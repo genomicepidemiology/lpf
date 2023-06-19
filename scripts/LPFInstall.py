@@ -439,7 +439,7 @@ def insert_bacteria_references_into_sql():
                 if t%100 == 0:
                     print("{} references processed".format(t))
                 if line.rstrip() in local_missing_references_in_sql_db: #set search
-                    cmd = "~/bin/kma seq2fasta -t_db /opt/lpf_databases/bacteria_db/bacteria_db -seqs {}".format(t)
+                    cmd = "kma seq2fasta -t_db /opt/lpf_databases/bacteria_db/bacteria_db -seqs {}".format(t)
                     proc = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
                     output = proc.communicate()[0].decode().rstrip()
                     reference_header_text = output.split("\n")[0][1:]
