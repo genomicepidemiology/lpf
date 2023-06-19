@@ -52,8 +52,7 @@ elif args.mlst_db:
     database_list.append('mlst_db')
 elif args.cdd_db:
     database_list.append('cdd_db')
-if not os.path.exists('/opt/lpf_databases/lpf.db'):
-    set_up_lpf_db()
+
 
 if args.override:
     os.system('sudo mkdir -m 777 /opt/lpf_db_tmp')
@@ -117,3 +116,6 @@ else:
 
         else:
             print('Database {0} already exists. Use -override to override existing databases'.format(item))
+
+if not os.path.exists('/opt/lpf_databases/lpf.db'):
+    set_up_lpf_db()
