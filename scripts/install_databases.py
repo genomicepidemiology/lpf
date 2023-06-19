@@ -4,6 +4,8 @@ import os
 import argparse
 import subprocess
 
+sys.path = [os.path.join(os.path.dirname(os.path.realpath(__file__)), '..')] + sys.path
+
 from scripts.setupSqlDb import set_up_lpf_db
 
 parser = argparse.ArgumentParser(description='.')
