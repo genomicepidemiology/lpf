@@ -1,0 +1,6 @@
+resfinder_db
+plasmidfinder_db
+virulencefinder_db
+bacteria_db
+mlst_db
+#virus_db

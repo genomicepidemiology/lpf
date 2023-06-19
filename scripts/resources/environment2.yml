@@ -1,0 +1,12 @@
+name: lpf
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.8
+  - kma=1.4.9
+  - ccphylo=0.8.2
+  - pip:
+      - -r requirements.txt
+

@@ -1,0 +1,22 @@
+# Runtime dependencies
+geocoder>=1.38.1
+geopy>=2.2.0
+nominatim>=0.1
+tabulate>=0.8.9
+biopython>=1.79
+cgecore>=1.5.6
+dataframe-image>=0.1.1
+fpdf2>=2.7.3
+pyfastx>=0.8.4
+js2py
+kmergenetyper>=1.0.13
+
+# Testing dependencies
+nose2
+pinocchio==0.4.3
+factory-boy==2.12.0
+
+# Code quality
+pylint==2.14.0
+flake8==4.0.1
+black==22.3.0
