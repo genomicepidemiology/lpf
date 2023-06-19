@@ -3,12 +3,39 @@ import sys
 import subprocess
 import sqlite3
 import src.sqlCommands as sqlCommands
-def set_up_lpf_db():
+
+
+def create_sql_db():
+    print("Creating SQL database")
+    conn = sqlite3.connect('/opt/lpf_databases/lpf.db')
+    c = conn.cursor()
+
+    c.execute(
+        """CREATE TABLE IF NOT EXISTS sample_table(entry_id TEXT PRIMARY KEY, sample_type TEXT, reference_id TEXT)""")
+    conn.commit()
+
+    c.execute(
+        """CREATE TABLE IF NOT EXISTS sequence_table(entry_id TEXT PRIMARY KEY, header TEXT, sequence TEXT)""")
+    conn.commit()
+
+    c.execute(
+        """CREATE TABLE IF NOT EXISTS meta_data_table(entry_id TEXT PRIMARY KEY, meta_data_json TEXT)""")  # Consider better design for meta_data
+    conn.commit()
+
+    c.execute(
+        """CREATE TABLE IF NOT EXISTS status_table(entry_id TEXT PRIMARY KEY, input_file TEXT, status TEXT, time_stamp TEXT, stage TEXT)""")
+    conn.commit()
+
+    c.execute(
+        """CREATE TABLE IF NOT EXISTS sync_table(last_sync TEXT, sync_round TEXT)""")
+    conn.commit()
+    conn.close()
+    print("SQL database created")
+
+
+def insert_bacteria_references_into_sql_db():
     sql_bacteria_reference_list = []
     bacteria_db_reference_list = []
-
-    if not os.path.exists('/opt/lpf_databases/bacteria_db/bacteria_db.name'):
-        sys.exit("bacteria_db is not found. Install prior to setting up the SQL database.")
 
     with open('/opt/lpf_databases/bacteria_db/bacteria_db.name', 'r') as f:
         for line in f:

@@ -6,7 +6,7 @@ import subprocess
 
 sys.path = [os.path.join(os.path.dirname(os.path.realpath(__file__)), '..')] + sys.path
 
-from scripts.setupSqlDb import set_up_lpf_db
+import setupSqlDb as setup_sql_db
 
 parser = argparse.ArgumentParser(description='.')
 parser.add_argument('-info', type=int, help='lpf database install script. Use -override to override existing databases. '
@@ -120,4 +120,8 @@ else:
             print('Database {0} already exists. Use -override to override existing databases'.format(item))
 
 if not os.path.exists('/opt/lpf_databases/lpf.db'):
-    set_up_lpf_db()
+    setup_sql_db.create_sql_db()
+elif os.path.getsize('/opt/lpf_databases/lpf.db') == 0:
+    setup_sql_db.create_sql_db()
+
+setup_sql_db.insert_bacteria_references_into_sql_db()
