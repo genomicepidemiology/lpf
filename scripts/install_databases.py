@@ -125,3 +125,20 @@ elif os.path.getsize('/opt/lpf_databases/lpf.db') == 0:
     setup_sql_db.create_sql_db()
 
 setup_sql_db.insert_bacteria_references_into_sql_db()
+
+"""Makes the lpf filesystem"""
+    path_list = ["/opt/lpf_data/",
+                 "/opt/lpf_analyses/",
+                 "/opt/lpf_metadata_json/",
+                 "/opt/lpf_metadata_json/individual_json",
+                 "/opt/lpf_databases/",
+                 "/opt/lpf_reports/",
+                 "/opt/lpf_logs/"]
+    for item in path_list:
+        if not os.path.exists(item):
+            os.system("sudo mkdir -m 777 {}".format(item))
+            print("Created {}".format(item))
+            if item == '/opt/lpf_databases/':
+                if os.path.exists('/opt/lpf_databases/lpf.db'):
+                    os.system("sudo rm /opt/lpf_databases/lpf.db")
+                    print("Removed old lpf.db")
