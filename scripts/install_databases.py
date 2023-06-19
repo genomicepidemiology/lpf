@@ -3,7 +3,7 @@ import sys
 import os
 import argparse
 import subprocess
-import Path
+from pathlib import Path
 
 sys.path = [os.path.join(os.path.dirname(os.path.realpath(__file__)), '..')] + sys.path
 
