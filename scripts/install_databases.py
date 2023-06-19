@@ -150,7 +150,7 @@ if os.path.exists("{}/.config/gtk-3.0/bookmarks".format(home)):
         data = fd.readlines()
     new_bookmark_list = list()
     for item in data:
-        if "lpf" not in item and "moss" not in item: #remove old moss bookmarks
+        if "lpf" not in item and "moss" not in item and 'LPF' not in item: #remove old moss bookmarks
             new_bookmark_list.append(item.rstrip())
     new_bookmark_list.append("file:///opt/lpf_data")
     new_bookmark_list.append("file:///opt/lpf_reports")
