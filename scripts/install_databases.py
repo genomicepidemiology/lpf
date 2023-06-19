@@ -33,8 +33,8 @@ parser.add_argument('-mlst_db', action="store_true", dest='mlst_db',
                 help='mlst database')
 parser.add_argument('-cdd_db', action="store_true", dest='cdd_db',
                                     help='cdd database')
-#parser.add_argument('-virus_db', action="store_true", dest='virus_db',
-#                                    help='virus database')
+parser.add_argument('-virus_db', action="store_true", dest='virus_db',
+                                    help='virus database')
 parser.add_argument('-override', action="store_true", dest='override',
                                     help='override existing databases')
 args = parser.parse_args()
@@ -42,7 +42,7 @@ args = parser.parse_args()
 database_list = []
 
 if args.all:
-    database_list = ['bacteria_db', 'resfinder_db', 'plasmidfinder_db', 'virulencefinder_db', 'mlst_db', 'cdd_db']
+    database_list = ['bacteria_db', 'resfinder_db', 'plasmidfinder_db', 'virulencefinder_db', 'mlst_db', 'cdd_db', 'virus_db']
 elif args.bacteria_db:
     database_list.append('bacteria_db')
 elif args.resfinder_db:
