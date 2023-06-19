@@ -7,7 +7,7 @@ def set_up_lpf_db():
     sql_bacteria_reference_list = []
     bacteria_db_reference_list = []
 
-    if not os.path.exists('/opt/lpf_databases/bacteria_db/bacteria_db'):
+    if not os.path.exists('/opt/lpf_databases/bacteria_db/bacteria_db.name'):
         sys.exit("bacteria_db is not found. Install prior to setting up the SQL database.")
 
     with open('/opt/lpf_databases/bacteria_db/bacteria_db.name', 'r') as f:
