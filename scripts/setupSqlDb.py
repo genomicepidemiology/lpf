@@ -3,6 +3,8 @@ import sys
 import subprocess
 import sqlite3
 import src.sqlCommands as sqlCommands
+import src.util.md5 as md5
+
 
 
 def create_sql_db():
