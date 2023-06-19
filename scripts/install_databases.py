@@ -3,6 +3,7 @@ import sys
 import os
 import argparse
 import subprocess
+import Path
 
 sys.path = [os.path.join(os.path.dirname(os.path.realpath(__file__)), '..')] + sys.path
 
@@ -142,3 +143,20 @@ for item in path_list:
             if os.path.exists('/opt/lpf_databases/lpf.db'):
                 os.system("sudo rm /opt/lpf_databases/lpf.db")
                 print("Removed old lpf.db")
+
+home = str(Path.home())
+if os.path.exists("{}/.config/gtk-3.0/bookmarks".format(home)):
+    with open("{}/.config/gtk-3.0/bookmarks".format(home)) as fd:
+        data = fd.readlines()
+    new_bookmark_list = list()
+    for item in data:
+        if "lpf" not in item and "moss" not in item: #remove old moss bookmarks
+            new_bookmark_list.append(item.rstrip())
+    new_bookmark_list.append("file:///opt/lpf_data")
+    new_bookmark_list.append("file:///opt/lpf_reports")
+    new_bookmark_list.append("file:///opt/lpf_logs")
+    new_bookmark_list.append("file:///opt/lpf_metadata_json")
+
+    with open("{}/.config/gtk-3.0/bookmarks".format(home), 'w') as fd:
+        for item in new_bookmark_list:
+            fd.write(item + '\n')
