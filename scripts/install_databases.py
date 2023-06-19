@@ -68,13 +68,7 @@ if args.override:
             os.system(
                 "kma index -i /opt/lpf_db_tmp/{0}/{0}.fasta.gz -o /opt/lpf_db_tmp/{0}/{0} -m 14 -Sparse ATG".format(
                     item))
-        elif item == 'mlst_db':
-            if not os.path.exists('schemes/notes.txt'):
-                os.system("cp scripts/schemes/notes.txt /opt/lpf_db_tmp/virulencefinder_db/notes.txt")
-                os.system("cp scripts/schemes/phenotypes.txt /opt/lpf_db_tmp/resfinder_db/phenotypes.txt")
-            else:
-                os.system("cp schemes/notes.txt /opt/lpf_db_tmp/virulencefinder_db/notes.txt")
-                os.system("cp schemes/phenotypes.txt /opt/lpf_db_tmp/resfinder_db/phenotypes.txt")
+        if item == 'mlst_db':
             os.system("git clone https://bitbucket.org/genomicepidemiology/mlst_db.git /opt/lpf_databases/mlst_db")
             os.system('chmod -R 777 /opt/lpf_db_tmp/mlst_db')
             file_list = os.listdir('/opt/lpf_db_tmp/mlst_db')
@@ -86,6 +80,12 @@ if args.override:
         else:
             os.system("kma index -i /opt/lpf_db_tmp/{0}/{0}.fasta.gz"
                       " -o /opt/lpf_db_tmp/{0}/{0} -m 14".format(item))
+        if not os.path.exists('schemes/notes.txt'):
+            os.system("cp scripts/schemes/notes.txt /opt/lpf_databases/virulencefinder_db/notes.txt")
+            os.system("cp scripts/schemes/phenotypes.txt /opt/lpf_databases/resfinder_db/phenotypes.txt")
+        else:
+            os.system("cp schemes/notes.txt /opt/lpf_databases/virulencefinder_db/notes.txt")
+            os.system("cp schemes/phenotypes.txt /opt/lpf_databases/resfinder_db/phenotypes.txt")
     os.system('sudo mv /opt/lpf_databases /opt/lpf_databases_old_backup')
     os.system('sudo mv /opt/lpf_db_tmp /opt/lpf_databases')
 
@@ -102,12 +102,6 @@ else:
             if item == 'bacteria_db':
                 os.system("kma index -i /opt/lpf_databases/{0}/{0}.fasta.gz -o /opt/lpf_databases/{0}/{0} -m 14 -Sparse ATG".format(item))
             elif item == 'mlst_db':
-                if not os.path.exists('schemes/notes.txt'):
-                    os.system("cp scripts/schemes/notes.txt /opt/lpf_databases/virulencefinder_db/notes.txt")
-                    os.system("cp scripts/schemes/phenotypes.txt /opt/lpf_databases/resfinder_db/phenotypes.txt")
-                else:
-                    os.system("cp schemes/notes.txt /opt/lpf_databases/virulencefinder_db/notes.txt")
-                    os.system("cp schemes/phenotypes.txt /opt/lpf_databases/resfinder_db/phenotypes.txt")
                 os.system("git clone https://bitbucket.org/genomicepidemiology/mlst_db.git /opt/lpf_databases/mlst_db")
                 os.system('chmod -R 777 /opt/lpf_databases/mlst_db')
                 file_list = os.listdir('/opt/lpf_databases/mlst_db')
@@ -116,6 +110,13 @@ else:
                         os.system("kma index -i /opt/lpf_databases/mlst_db/{0}/{0}.fsa -o /opt/lpf_databases/mlst_db/{0}/{0} -m 14".format(species, species))
             else:
                 os.system("kma index -i /opt/lpf_databases/{0}/{0}.fasta.gz -o /opt/lpf_databases/{0}/{0} -m 14".format(item, item))
+
+            if not os.path.exists('schemes/notes.txt'):
+                os.system("cp scripts/schemes/notes.txt /opt/lpf_databases/virulencefinder_db/notes.txt")
+                os.system("cp scripts/schemes/phenotypes.txt /opt/lpf_databases/resfinder_db/phenotypes.txt")
+            else:
+                os.system("cp schemes/notes.txt /opt/lpf_databases/virulencefinder_db/notes.txt")
+                os.system("cp schemes/phenotypes.txt /opt/lpf_databases/resfinder_db/phenotypes.txt")
 
         else:
             print('Database {0} already exists. Use -override to override existing databases'.format(item))
